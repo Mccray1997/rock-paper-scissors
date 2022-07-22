@@ -25,20 +25,25 @@ function computerSelection(){
  */
 function playerSelection(){
     let selection = prompt("Select paper, rock, or scissors: ");
-    return playerSelection; 
+    var finalChoice = selection.toLowerCase();
+    console.log(finalChoice);
+    return finalChoice; 
 }
 
 function playRound(playerSelection, computerSelection){
     if(computerSelection == "rock"){
         switch(playerSelection){
             case 'rock': 
+                console.log("Draw")
                 return 'Draw'
                 break
             case 'paper': 
+                console.log("you win")
                 playerWins++;
                 return "You win! Paper beats rock"
                 break
             case 'siccors': 
+                console.log("You loose")
                 computerWins++;
                 return "You loose! rocks beats scissors"
                 break;
@@ -49,13 +54,16 @@ function playRound(playerSelection, computerSelection){
     if(computerSelection == "paper"){
          switch(playerSelection){
             case 'paper': 
+                console.log("Draw")
                 return 'Draw'
                 break
             case 'scissors': 
+                console.log("you win")
                 playerWins++;
                 return 'You win! Scissors beat paper'
                 break
             case 'rock': 
+                console.log("You loose")
                 computerWins++;
                 return "You loose! Paper beats rock"
                 break
@@ -65,14 +73,17 @@ function playRound(playerSelection, computerSelection){
     if(computerSelection == "scissors"){
         switch(playerSelection){
             case 'scissors': 
+                console.log("Draw")
                 return "Draw"
                 break
             case 'rock': 
                 playerWins++;
+                console.log("You win")
                 return 'You win! Scissors beat paper'
                 break
             case 'paper':
                 computerWins++;
+                console.log("you loose")
                 return 'You loose! Scissors beat paper'
                 break
         }
@@ -84,24 +95,24 @@ function playRound(playerSelection, computerSelection){
  * function that begins the game and goes for five rounds
  */
 function game(){
+    console.log("Game has begun!");
 
     for (let i = 0; i <= 5; i++) {
-        let player = 'rock'
+        let player = playerSelection()
         let computer = computerSelection()
         let round = playRound(player, computer)
     }
-    console.log(playerWins)
-    console.log(computerWins)
 
     if(computerWins < playerWins){
+        console.log("You win")
         return "you Win!"
     }
     if(computerWins > playerWins){
+        console.log("You loose")
         return "Sorry you loose"
     }
     else{
+        console.log("Draw")
         return "Draw!"
     }
 }// end game function
-
-console.log(game());
