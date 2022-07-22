@@ -5,6 +5,9 @@
  * made for the odin project
  */
 
+/** Vsaribles for the number of wins for the player and the computer */
+playerWins = 0
+computerWins = 0
 
 /**
  * randomly returns rock,paper, or scissors
@@ -32,14 +35,16 @@ function playRound(playerSelection, computerSelection){
                 return 'Draw'
                 break
             case 'paper': 
+                playerWins++;
                 return "You win! Paper beats rock"
                 break
             case 'siccors': 
+                computerWins++;
                 return "You loose! rocks beats scissors"
                 break;
          }
         
-    }
+    }//end if statement
 
     if(computerSelection == "paper"){
          switch(playerSelection){
@@ -47,13 +52,15 @@ function playRound(playerSelection, computerSelection){
                 return 'Draw'
                 break
             case 'scissors': 
+                playerWins++;
                 return 'You win! Scissors beat paper'
                 break
             case 'rock': 
+                computerWins++;
                 return "You loose! Paper beats rock"
                 break
          }   
-    }
+    }//end if statement
 
     if(computerSelection == "scissors"){
         switch(playerSelection){
@@ -61,23 +68,40 @@ function playRound(playerSelection, computerSelection){
                 return "Draw"
                 break
             case 'rock': 
+                playerWins++;
                 return 'You win! Scissors beat paper'
                 break
             case 'paper':
+                computerWins++;
                 return 'You loose! Scissors beat paper'
                 break
         }
-    }
+    }// end if statement
 
-}
+}// end of playRound
 
 /**
  * function that begins the game and goes for five rounds
  */
 function game(){
+
     for (let i = 0; i <= 5; i++) {
-        let player = playerSelection()
+        let player = 'rock'
         let computer = computerSelection()
         let round = playRound(player, computer)
     }
-}
+    console.log(playerWins)
+    console.log(computerWins)
+
+    if(computerWins < playerWins){
+        return "you Win!"
+    }
+    if(computerWins > playerWins){
+        return "Sorry you loose"
+    }
+    else{
+        return "Draw!"
+    }
+}// end game function
+
+console.log(game());
